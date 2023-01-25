@@ -1,2 +1,3 @@
 # nim
-Nim-Spiel
+
+Dieses Java-Programm ist eine Implementierung des Nim-Spiels.
