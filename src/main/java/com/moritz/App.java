@@ -1,4 +1,5 @@
 package com.moritz;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -6,18 +7,12 @@ public class App {
     static public void main(String args[]) {
         Scanner keyboard = new Scanner(System.in);
         Random myrandom = new Random();
-        int startZahl, wunsch, steabchenWegNehmen = 1;
+        int startZahl, steabchenWegNehmen = 1;
         boolean s;
 
         System.out.println("Mit wie vielen Streichhölzer wollen sie maximal starten?");
 
-        do {
-            wunsch = keyboard.nextInt();
-        } while (wunsch < 6);
-
-        do {
-            startZahl = myrandom.nextInt(wunsch) + 1;
-        } while (startZahl < 10);
+        startZahl = keyboard.nextInt();
 
         System.out.println("Wir beginnen mit " + startZahl + " Stäbchen");
 
@@ -26,7 +21,6 @@ public class App {
         if (münze == 1) {
             System.out.println("Du beginnst ");
             s = true;
-
         } else {
             System.out.println("Computer beginnt ");
             s = false;
@@ -38,7 +32,7 @@ public class App {
                 startZahl = startZahl - steabchenWegNehmen;
                 System.out.println(startZahl + " übrigen Stäbchen.");
                 s = true;
-                
+
             } else {
                 steabchenWegNehmen = leseAnzahl(keyboard);
                 startZahl = startZahl - steabchenWegNehmen;
@@ -57,16 +51,13 @@ public class App {
     static private int nimCheat(int startZahl) {
         System.out.println("Computer ist dran");
         int steabchenWegNehmen;
-        
-        if (startZahl>4) {
-            steabchenWegNehmen= (2+startZahl) % 4;
-        } else {
-            steabchenWegNehmen=startZahl -1;
-        }
-        
+
+        steabchenWegNehmen = (3 + startZahl) % 4;
+
         if (steabchenWegNehmen == 0) {
             steabchenWegNehmen = 3;
-        } 
+        }
+
         return steabchenWegNehmen;
     }
 
