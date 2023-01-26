@@ -1,14 +1,8 @@
 package com.moritz;
-
-/**
- * Hello world!
- *
- */
 import java.util.Scanner;
 import java.util.Random;
 
 public class App {
-
     static public void main(String args[]) {
         Scanner keyboard = new Scanner(System.in);
         Random myrandom = new Random();
@@ -40,46 +34,50 @@ public class App {
 
         do {
             if (!s) {
-                nimCheat(startZahl);
+                steabchenWegNehmen = nimCheat(startZahl);
                 startZahl = startZahl - steabchenWegNehmen;
                 System.out.println(startZahl + " übrigen Stäbchen.");
-                s = false;
-                System.out.println("Du bist dran.");
+                s = true;
+                
             } else {
                 steabchenWegNehmen = leseAnzahl(keyboard);
                 startZahl = startZahl - steabchenWegNehmen;
                 System.out.println(startZahl + " übrige Stäbchen.");
-                s = true;
+                s = false;
             }
         } while (startZahl > 1);
 
-        if (s) {
+        if (!s) {
             System.out.println("!!Du Gewinnst!! Herzlichen Glückwunsch!!");
         } else {
             System.out.println("!!Computer gewinnt!!");
         }
     }
 
-    static private void nimCheat(int startZahl) {
+    static private int nimCheat(int startZahl) {
         System.out.println("Computer ist dran");
-        int steabchenWegNehmen = 0, x;
-        x = startZahl % 4;
-        if (x == 0) {
-            steabchenWegNehmen = 3;
+        int steabchenWegNehmen;
+        
+        if (startZahl>4) {
+            steabchenWegNehmen= (2+startZahl) % 4;
         } else {
-            steabchenWegNehmen = x;
+            steabchenWegNehmen=startZahl -1;
         }
-        System.out.print(x + "  " + steabchenWegNehmen);
+        
+        if (steabchenWegNehmen == 0) {
+            steabchenWegNehmen = 3;
+        } 
+        return steabchenWegNehmen;
     }
 
     static private int leseAnzahl(Scanner keyboard) {
+        System.out.println("Du bist dran.");
         int steabchenWegNehmen;
 
         do {
-            System.out.println(" Wähle 1,2 oder 3 Stäbchen aus das/die du wegnehmen willst! ");
+            System.out.println("Wähle 1,2 oder 3 Stäbchen aus das/die du wegnehmen willst! ");
             steabchenWegNehmen = keyboard.nextInt();
         } while (steabchenWegNehmen < 1 || steabchenWegNehmen > 3);
-
         return steabchenWegNehmen;
     }
 }
